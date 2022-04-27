@@ -1,0 +1,268 @@
+openapi: 3.0.0
+
+info:
+  version: 1.0.0
+  title: Movie API
+tags:
+  - name: Movie
+    description: Movie endpoints
+  - name: User information
+    description: User information endpoints
+paths:
+  /users:
+    post:
+      tags:
+        - User information
+      summary: Creates a user.
+      description: Sign up user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: xyz@xyz.com
+                password:
+                  type: string
+                  example: x@adek1e$
+                username:
+                  type: string
+                  example: john
+      responses:
+        '200':
+          description: User object has been created
+    get:
+      summary: get all users
+      tags:
+        - User information
+      responses:
+        '200':
+          description: A success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /users/{userId}:
+    get:
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+          required: true
+          description: Id of the user
+      summary: get a user by userId
+      tags:
+        - User information
+      responses:
+        '200':
+          description: A success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    put:
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+          required: true
+          description: Id of the user
+      summary: update a user by userId
+      tags:
+        - User information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: xyz@xyz.com
+                password:
+                  type: string
+                  example: x@adek1e$
+                username:
+                  type: string
+                  example: john
+      responses:
+        '200':
+          description: A success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    delete:
+      summary: delete a user by userId
+      parameters:
+        - in: path
+          name: userId
+          schema:
+            type: string
+          required: true
+          description: Id of the user
+      tags:
+        - User information
+      responses:
+        '204':
+          description: A success
+  /movies:
+    post:
+      tags:
+        - Movie
+      summary: create a movie
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: The Dark Knight
+                posterPath:
+                  type: string
+                  example: image url....
+                overview:
+                  type: string
+                  example: Movie details ...
+                voteAverage:
+                  type: number
+                  example: 7
+      responses:
+        '201':
+          description: Movie object created
+    get:
+      tags:
+        - Movie
+      summary: get all Movies
+      description: A success
+      responses:
+        '200':
+          description: A success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+  /movies/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Id of the Movie
+      summary: get a user by movie id
+      tags:
+        - Movie
+      responses:
+        '200':
+          description: A success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+    put:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Id of the movie
+      summary: update a movie by movieId
+      tags:
+        - Movie
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: The Dark Knight
+                posterPath:
+                  type: string
+                  example: image url....
+                overview:
+                  type: string
+                  example: Movie details ...
+                voteAverage:
+                  type: number
+                  example: 7
+      responses:
+        '200':
+          description: A success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+    delete:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: Id of the movie
+      summary: delete a movie by movieId
+      tags:
+        - Movie
+      responses:
+        '204':
+          description: A success
+
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - username
+        - email
+        - password
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        username: Awni Rifai
+        email: Awni@gmail.com
+        password: Awni@2020
+    Movie:
+      type: object
+      required:
+        - title
+        - posterPath
+        - VoteAverage
+        - overview
+      properties:
+        id:
+          type: number
+          example: 2
+        title:
+          type: string
+          example: Interstellar
+        posterPath:
+          type: string
+          example: image url
+        overview:
+          type: string
+          example: ...description of the movie
+        voteAverage:
+          type: number
+          example: 1
