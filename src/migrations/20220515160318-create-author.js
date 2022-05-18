@@ -1,26 +1,20 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Movies', {
+    await queryInterface.createTable('Authors', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      title: {
+      username: {
         type: Sequelize.STRING,
       },
-      voteAverage: {
-        allowNull: false,
-        type: Sequelize.FLOAT,
-      },
-      posterPath: {
-        allowNull: false,
+      email: {
         type: Sequelize.STRING,
       },
-      overview: {
-        allowNull: false,
-        type: Sequelize.TEXT,
+      password: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
@@ -32,7 +26,7 @@ module.exports = {
       },
     });
   },
-  async down(queryInterface) {
-    await queryInterface.dropTable('Movies');
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('Authors');
   },
 };

@@ -7,6 +7,7 @@ COPY package.json /home/app/
 COPY package-lock.json /home/app/
 COPY .sequelizerc /home/app/
 
+RUN npm i --save cors
 RUN npm ci
 
 RUN npm i -g nodemon

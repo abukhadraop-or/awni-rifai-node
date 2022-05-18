@@ -5,6 +5,7 @@ const {
   createUser,
   updateUser,
   deleteUser,
+  countUser,
 } = require('../controllers/user');
 const { validateUser } = require('../middlewares/validators/userValidator');
 
@@ -17,6 +18,7 @@ router.get('', getUsers);
 /**
  * Handle get to /users route.
  */
+router.get('/count', countUser);
 router.get('/:id', getUserById);
 /**
  * Handle post to /users route.
