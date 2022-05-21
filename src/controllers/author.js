@@ -11,8 +11,17 @@ const { paginate } = require('../utils/paginate');
 const getAuthors = async (req, res) => {
   try {
     const page = req.query.page || 1;
-
     const limit = req.query.limit || 10;
+
+    // fetch all authors
+    if (limit === 10 && page === 1) {
+      const authors = await Author.findAll({
+        order: [['id', 'DESC']],
+      });
+      return res.status(200).send(authors);
+    }
+
+    // fetch paginated authors
     const offset = paginate(page, limit);
     const authors = await Author.findAll({
       limit,

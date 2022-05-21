@@ -14,6 +14,7 @@ for (let i = 0; i < 40; i++) {
 module.exports = {
   async up(queryInterface) {
     await queryInterface.bulkInsert('Users', users, {});
+    await queryInterface.bulkInsert('Authors', users, {});
   },
 
   async down(queryInterface) {
