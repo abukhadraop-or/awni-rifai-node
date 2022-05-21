@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "checkJs": true,
+      "module": "commonjs",
+      "target": "es",
+      "baseUrl": "./app",
+      "paths": {
+        "~/*": ["src/*"]
+      }
+    },
+    "exclude": ["node_modules", "**/node_modules/*"],
+    "include": ["./src/**/*.js"]
+  }
